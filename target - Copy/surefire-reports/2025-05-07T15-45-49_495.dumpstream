@@ -1,0 +1,5 @@
+# Created at 2025-05-07T15:45:50.081
+Boot Manifest-JAR contains absolute paths in classpath 'F:\demo\java---examples\java---examples\spring-airline-ticket-reservation-system\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
