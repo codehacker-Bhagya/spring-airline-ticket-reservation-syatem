@@ -1,45 +1,67 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <groupId>com.bhagya.practice</groupId>
-    <artifactId>spring-airline-ticket-reservation-system</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <!-- passenger module -->
+    <!-- Repository -->
+    <bean id="passengerRepository" class="com.bhagya.practice.repository.PassengerRepository"/>
 
-    <name>spring-airline-ticket-reservation-system</name>
-    <url>http://maven.apache.org</url>
+    <!-- Service -->
+    <bean id="PassengerService" class="com.bhagya.practice.service.PassengerService">
+        <!--        <property name="PassengerRepository" ref="PassengerRepository"/>-->
+        <constructor-arg ref="PassengerRepository"/>
+    </bean>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <!-- Controller -->
+    <bean id="PassengerController" class="com.bhagya.practice.controller.PassengerController">
+        <constructor-arg ref="PassengerService"/>
+    </bean>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>6.2.5</version> <!-- Use the appropriate Spring version -->
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>6.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>6.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.38</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
-        </dependency>
-    </dependencies>
-</project>
+
+    <!-- Flight module -->
+    <bean id="FlightRepository" class="com.bhagya.practice.repository.FlightRepository"/>
+
+    <!-- Service -->
+    <bean id="FlightService" class="com.bhagya.practice.service.FlightService">
+        <!--        <property name="FlightRepository" ref="FlightRepository"/>-->
+        <constructor-arg ref="FlightRepository"/>
+    </bean>
+
+    <!-- Controller -->
+    <bean id="FlightController" class="com.bhagya.practice.controller.FlightController">
+        <constructor-arg ref="FlightService"/>
+    </bean>
+
+
+    <!-- Ticket module -->
+    <bean id="TicketRepository" class="com.bhagya.practice.repository.TicketRepository"/>
+
+    <!-- Service -->
+    <bean id="TicketService" class="com.bhagya.practice.service.TicketService">
+        <!--        <property name="TicketRepository" ref="TicketRepository"/>-->
+        <constructor-arg ref="TicketRepository"/>
+    </bean>
+
+    <!-- Controller -->
+    <bean id="TicketController" class="com.bhagya.practice.controller.TicketController">
+        <constructor-arg ref="TicketService"/>
+    </bean>
+
+
+    <!-- Billing module -->
+    <bean id="BillingRepository" class="com.bhagya.practice.repository.BillingRepository"/>
+
+    <!-- Service -->
+    <bean id="BillingService" class="com.bhagya.practice.service.BillingService">
+        <!--        <property name="BillingRepository" ref="BillingRepository"/>-->
+        <constructor-arg ref="BillingRepository"/>
+    </bean>
+
+    <!-- Controller -->
+    <bean id="BillingController" class="com.bhagya.practice.controller.BillingController">
+        <constructor-arg ref="BillingService"/>
+    </bean>
+
+</beans>
